@@ -8,7 +8,7 @@ require("@nomiclabs/hardhat-web3");
 
 //require("hardhat-gas-reporter");
 
-const { PRIVATEKEY } = require("./pvkey.js")
+const { PRIVATEKEY } = require("./pvkey.js") // PRIVATEKEY = [`0x${"YOUR_PVKEY"}`] ... module.exports = {PRIVATEKEY}
 
 
 module.exports = {
