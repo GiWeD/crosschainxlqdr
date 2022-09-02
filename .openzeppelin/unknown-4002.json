@@ -39,6 +39,16 @@
       "address": "0xa5DeA425540b943Bf47F57e7ecde67230d48084f",
       "txHash": "0x70cfb02995cb52e1fd970e88745db8efa30c4c48e8a249d42322ec7cb987e2f4",
       "kind": "transparent"
+    },
+    {
+      "address": "0x3EB2Ae6DCf3E81781064cBf8c46dfAE20CFEA12E",
+      "txHash": "0x5a57156b5e49998c017e3f5c9f6cd2a2d2f1c84b1f0b2db86646776a3e258016",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xbDBF29a038095d7270249D14D5f0BAe4E38f7B8A",
+      "txHash": "0x9de0feac4918d7613070f25319dc3acf28170bf09b774e2d1c582d6e0714387b",
+      "kind": "transparent"
     }
   ],
   "impls": {
@@ -228,6 +238,269 @@
           },
           "t_array(t_uint256)50_storage": {
             "label": "uint256[50]"
+          }
+        }
+      }
+    },
+    "b3dedc19d60453d592c192f6b96466ca7823be86843a22db682fe2f46d9720a3": {
+      "address": "0x5FfD9891BE71faD73598CCFf548E871115a7D5a0",
+      "txHash": "0x95d5803257f9c6e9aeba445a2cf3ef2201603ea79455c40dbadd235e21f3752d",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\Initializable.sol:25"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\Initializable.sol:30"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\utils\\ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "_owner",
+            "type": "t_address",
+            "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:20"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:74"
+          },
+          {
+            "contract": "ReentrancyGuardUpgradeable",
+            "label": "_status",
+            "type": "t_uint256",
+            "src": "@openzeppelin\\contracts-upgradeable\\utils\\ReentrancyGuardUpgradeable.sol:37"
+          },
+          {
+            "contract": "ReentrancyGuardUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\utils\\ReentrancyGuardUpgradeable.sol:67"
+          },
+          {
+            "contract": "ERC20Upgradeable",
+            "label": "_balances",
+            "type": "t_mapping(t_address,t_uint256)",
+            "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC20\\ERC20Upgradeable.sol:37"
+          },
+          {
+            "contract": "ERC20Upgradeable",
+            "label": "_allowances",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_uint256))",
+            "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC20\\ERC20Upgradeable.sol:39"
+          },
+          {
+            "contract": "ERC20Upgradeable",
+            "label": "_totalSupply",
+            "type": "t_uint256",
+            "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC20\\ERC20Upgradeable.sol:41"
+          },
+          {
+            "contract": "ERC20Upgradeable",
+            "label": "_name",
+            "type": "t_string_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC20\\ERC20Upgradeable.sol:43"
+          },
+          {
+            "contract": "ERC20Upgradeable",
+            "label": "_symbol",
+            "type": "t_string_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC20\\ERC20Upgradeable.sol:44"
+          },
+          {
+            "contract": "ERC20Upgradeable",
+            "label": "_decimals",
+            "type": "t_uint8",
+            "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC20\\ERC20Upgradeable.sol:45"
+          },
+          {
+            "contract": "ERC20Upgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)44_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\token\\ERC20\\ERC20Upgradeable.sol:312"
+          },
+          {
+            "contract": "CcLQDRController",
+            "label": "endpoint",
+            "type": "t_contract(ILayerZeroEndpoint)2403",
+            "src": "contracts\\CcLQDRController.sol:25"
+          },
+          {
+            "contract": "CcLQDRController",
+            "label": "layerZeroChainId",
+            "type": "t_uint256",
+            "src": "contracts\\CcLQDRController.sol:27"
+          },
+          {
+            "contract": "CcLQDRController",
+            "label": "layerZeroToChainIds",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "contracts\\CcLQDRController.sol:28"
+          },
+          {
+            "contract": "CcLQDRController",
+            "label": "isLqdrNativeChain",
+            "type": "t_bool",
+            "src": "contracts\\CcLQDRController.sol:30"
+          },
+          {
+            "contract": "CcLQDRController",
+            "label": "lqdr",
+            "type": "t_address",
+            "src": "contracts\\CcLQDRController.sol:32"
+          },
+          {
+            "contract": "CcLQDRController",
+            "label": "controller",
+            "type": "t_mapping(t_uint256,t_bytes_storage)",
+            "src": "contracts\\CcLQDRController.sol:34"
+          },
+          {
+            "contract": "CcLQDRController",
+            "label": "isAllowed",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "contracts\\CcLQDRController.sol:35"
+          },
+          {
+            "contract": "CcLQDRController",
+            "label": "isLayerZeroChainId",
+            "type": "t_mapping(t_uint256,t_bool)",
+            "src": "contracts\\CcLQDRController.sol:36"
+          }
+        ],
+        "types": {
+          "t_contract(ILayerZeroEndpoint)2403": {
+            "label": "contract ILayerZeroEndpoint"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_mapping(t_uint256,t_bytes_storage)": {
+            "label": "mapping(uint256 => bytes)"
+          },
+          "t_bytes_storage": {
+            "label": "bytes"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_mapping(t_uint256,t_bool)": {
+            "label": "mapping(uint256 => bool)"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(address => mapping(address => uint256))"
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_uint8": {
+            "label": "uint8"
+          },
+          "t_array(t_uint256)44_storage": {
+            "label": "uint256[44]"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          }
+        }
+      }
+    },
+    "fd0109afa6c7a690c0c9473cd02d61bd33a901ba0309550d956aeb71b9469f87": {
+      "address": "0xFDA4DEcd4D74F817a450485bc3E91a067a21EeBF",
+      "txHash": "0xcfbb5aa6088aa117fe51c648ac5edcf8a5aacf254fc5eb744641866c3235856e",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_uint8",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\utils\\Initializable.sol:62"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\utils\\Initializable.sol:67"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\utils\\ContextUpgradeable.sol:36"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "_owner",
+            "type": "t_address",
+            "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:22"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:94"
+          },
+          {
+            "contract": "LQDRVault",
+            "label": "lqdr",
+            "type": "t_address",
+            "src": "contracts\\LQDRVault.sol:21"
+          },
+          {
+            "contract": "LQDRVault",
+            "label": "isAuth",
+            "type": "t_mapping(t_address,t_bool)",
+            "src": "contracts\\LQDRVault.sol:23"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          },
+          "t_uint8": {
+            "label": "uint8"
           }
         }
       }

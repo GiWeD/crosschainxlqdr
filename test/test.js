@@ -14,48 +14,11 @@ const {
 const { erc20Abi } = require("../scripts/Abi.js")
 
 const ether = require("@openzeppelin/test-helpers/src/ether.js");
-const { LogDescription } = require("ethers/lib/utils");
+jsonabi2  = [{"inputs":[{"internalType":"address","name":"_admin","type":"address"},{"internalType":"address","name":"_callProxy","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"_old","type":"address"},{"indexed":true,"internalType":"address","name":"_new","type":"address"}],"name":"ApplyAdmin","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"_old","type":"address"},{"indexed":true,"internalType":"address","name":"_new","type":"address"}],"name":"ChangeAdmin","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"token","type":"address"},{"indexed":true,"internalType":"address","name":"sender","type":"address"},{"indexed":true,"internalType":"address","name":"receiver","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"fromChainId","type":"uint256"}],"name":"LogSwapin","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"token","type":"address"},{"indexed":true,"internalType":"address","name":"sender","type":"address"},{"indexed":true,"internalType":"address","name":"receiver","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"toChainId","type":"uint256"}],"name":"LogSwapout","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"token","type":"address"},{"indexed":true,"internalType":"address","name":"sender","type":"address"},{"indexed":true,"internalType":"address","name":"receiver","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"toChainId","type":"uint256"}],"name":"LogSwapoutFail","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"bytes32","name":"role","type":"bytes32"}],"name":"Paused","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"bytes32","name":"role","type":"bytes32"}],"name":"Unpaused","type":"event"},{"inputs":[],"name":"PAUSE_ALL_ROLE","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"PAUSE_FALLBACK_ROLE","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"PAUSE_SWAPIN_ROLE","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"PAUSE_SWAPOUT_ROLE","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"admin","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes","name":"data","type":"bytes"}],"name":"anyExecute","outputs":[{"internalType":"bool","name":"success","type":"bool"},{"internalType":"bytes","name":"result","type":"bytes"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"anycallExecutor","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"applyAdmin","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"callProxy","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_admin","type":"address"}],"name":"changeAdmin","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"token","type":"address"},{"internalType":"address","name":"newOwner","type":"address"}],"name":"changeTokenOwner","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"clientPeers","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"}],"name":"pause","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"}],"name":"paused","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"pendingAdmin","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_callProxy","type":"address"}],"name":"setCallProxy","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256[]","name":"_chainIds","type":"uint256[]"},{"internalType":"address[]","name":"_peers","type":"address[]"}],"name":"setClientPeers","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"srcToken","type":"address"},{"internalType":"uint256[]","name":"chainIds","type":"uint256[]"},{"internalType":"address[]","name":"dstTokens","type":"address[]"}],"name":"setTokenPeers","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"token","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"address","name":"receiver","type":"address"},{"internalType":"uint256","name":"toChainId","type":"uint256"},{"internalType":"uint256","name":"flags","type":"uint256"}],"name":"swapout","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"tokenPeers","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"}],"name":"unpause","outputs":[],"stateMutability":"nonpayable","type":"function"},{"stateMutability":"payable","type":"receive"}]
+abi3 = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"},{"indexed":false,"internalType":"address","name":"user","type":"address"}],"name":"Deposit","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint8","name":"version","type":"uint8"}],"name":"Initialized","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"},{"indexed":false,"internalType":"address","name":"user","type":"address"}],"name":"Withdraw","type":"event"},{"inputs":[{"internalType":"address[]","name":"_addresses","type":"address[]"}],"name":"addAuth","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_from","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"deposit","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"initialize","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"isAuth","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"lqdr","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address[]","name":"_addresses","type":"address[]"}],"name":"removeAuth","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_to","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"withdraw","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"}]
 
 
-const geistStaking = ethers.utils.getAddress("0x49c93a95dbcc9A6A4D8f77E59c038ce5020e82f8")
-const geistStakingAbi = [{"inputs":[{"internalType":"address","name":"_stakingToken","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"token","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Recovered","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"reward","type":"uint256"}],"name":"RewardAdded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":true,"internalType":"address","name":"rewardsToken","type":"address"},{"indexed":false,"internalType":"uint256","name":"reward","type":"uint256"}],"name":"RewardPaid","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"token","type":"address"},{"indexed":false,"internalType":"uint256","name":"newDuration","type":"uint256"}],"name":"RewardsDurationUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Staked","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"Withdrawn","type":"event"},{"inputs":[{"internalType":"address","name":"_rewardsToken","type":"address"}],"name":"addReward","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"claimableRewards","outputs":[{"components":[{"internalType":"address","name":"token","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"internalType":"struct MultiFeeDistribution.RewardData[]","name":"rewards","type":"tuple[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"earnedBalances","outputs":[{"internalType":"uint256","name":"total","type":"uint256"},{"components":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"unlockTime","type":"uint256"}],"internalType":"struct MultiFeeDistribution.LockedBalance[]","name":"earningsData","type":"tuple[]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"exit","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getReward","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_rewardsToken","type":"address"}],"name":"getRewardForDuration","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_rewardsToken","type":"address"}],"name":"lastTimeRewardApplicable","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"lockDuration","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"lockedBalances","outputs":[{"internalType":"uint256","name":"total","type":"uint256"},{"internalType":"uint256","name":"unlockable","type":"uint256"},{"internalType":"uint256","name":"locked","type":"uint256"},{"components":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"unlockTime","type":"uint256"}],"internalType":"struct MultiFeeDistribution.LockedBalance[]","name":"lockData","type":"tuple[]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"lockedSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"bool","name":"withPenalty","type":"bool"}],"name":"mint","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"minters","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"mintersAreSet","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"tokenAddress","type":"address"},{"internalType":"uint256","name":"tokenAmount","type":"uint256"}],"name":"recoverERC20","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"rewardData","outputs":[{"internalType":"uint256","name":"periodFinish","type":"uint256"},{"internalType":"uint256","name":"rewardRate","type":"uint256"},{"internalType":"uint256","name":"lastUpdateTime","type":"uint256"},{"internalType":"uint256","name":"rewardPerTokenStored","type":"uint256"},{"internalType":"uint256","name":"balance","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_rewardsToken","type":"address"}],"name":"rewardPerToken","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"rewardTokens","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"address","name":"","type":"address"}],"name":"rewards","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"rewardsDuration","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address[]","name":"_minters","type":"address[]"}],"name":"setMinters","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"bool","name":"lock","type":"bool"}],"name":"stake","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"stakingToken","outputs":[{"internalType":"contract IMintableToken","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"totalBalance","outputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"unlockedBalance","outputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"address","name":"","type":"address"}],"name":"userRewardPerTokenPaid","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"withdrawExpiredLocks","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"user","type":"address"}],"name":"withdrawableBalance","outputs":[{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint256","name":"penaltyAmount","type":"uint256"}],"stateMutability":"view","type":"function"}]
-
-const fakeLP = ethers.utils.getAddress("0x30A92a4EEca857445F41E4Bb836e64D66920F1C0")
-const addrZero = ethers.utils.getAddress("0x0000000000000000000000000000000000000000")
-const geist = ethers.utils.getAddress("0xd8321AA83Fb0a4ECd6348D4577431310A6E0814d")
-const gUSDC = ethers.utils.getAddress("0xe578c856933d8e1082740bf7661e379aa2a30b26")
-const gFTM = ethers.utils.getAddress("0x39b3bd37208cbade74d0fcbdbb12d606295b430a")
-const USDC = ethers.utils.getAddress("0x04068da6c83afcfa0e13ba15a6696662335d5b75")
-const gftmGateway = ethers.utils.getAddress("0x47102245FEa0F8D35a6b28E54505e9FfD83d0704")
-const spookyrouter = ethers.utils.getAddress("0xF491e7B69E4244ad4002BC14e878a34207E38c29")
-
-
-const tokenRewards = [
-    gFTM,
-    gUSDC,
-    ethers.utils.getAddress("0x940f41f0ec9ba1a34cf001cc03347ac092f5f6b5"),
-    ethers.utils.getAddress("0x07e6332dd090d287d3489245038daf987955dcfb"),
-    ethers.utils.getAddress("0x25c130b2624cf12a4ea30143ef50c5d68cefa22f"),
-    ethers.utils.getAddress("0x38aca5484b8603373acc6961ecd57a6a594510a3"),    
-    ethers.utils.getAddress("0x690754a168b022331caa2467207c61919b3f8a98"),    
-    ethers.utils.getAddress("0xc664fc7b8487a3e10824cda768c1d239f2403bbe"),
-    geist
-]
-
-const underlyingToken = [
-
-    ethers.utils.getAddress("0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83"),
-    USDC,
-    ethers.utils.getAddress("0x049d68029688eAbF473097a2fC38ef61633A3C7A"),
-    ethers.utils.getAddress("0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E"),
-    ethers.utils.getAddress("0x74b23882a30290451A17c44f4F05243b6b58C76d"),
-    ethers.utils.getAddress("0x321162Cd933E2Be498Cd2267a90534A804051b11"),    
-    ethers.utils.getAddress("0x1E4F97b9f9F913c46F1632781732927B9019C68b"),    
-    ethers.utils.getAddress("0x82f0B8B456c1A451378467398982d4834b6829c1"),
-    geist
-]
-
-describe("LiGeist TEST UNIT", function () {
+describe("TEST UNIT", function () {
    
     beforeEach(async () => {
         
@@ -64,35 +27,67 @@ describe("LiGeist TEST UNIT", function () {
    
     });
     
-    it("Prepare contracts", async function () {
-        
+    it("", async function () {
         accounts = await ethers.getSigners();
         owner = accounts[0]
 
-        geistStakingContract = new ethers.Contract(geistStaking, geistStakingAbi, owner   )  
+        vaultAddress = ethers.utils.getAddress("0xbDBF29a038095d7270249D14D5f0BAe4E38f7B8A")
+        proxyAddr =  ethers.utils.getAddress("0x852c882963da259168fa7bef2f737c988c3cf5ac")
+
+        lqdrProxyFactory = await ethers.getContractFactory("LQDR");
+        lqdrProxyFactoryContract = await lqdrProxyFactory.deploy( "LiquidDriver", "LQDR", 18, owner.address, vaultAddress);
+        txDeployed = await lqdrProxyFactoryContract.deployed();
+        await lqdrProxyFactoryContract.allowMinter(proxyAddr)
+        console.log('Contract LQDR deployed to:', lqdrProxyFactoryContract.address);
+        console.log('Owner: ', (await lqdrProxyFactoryContract.owner()).toString())
+        console.log('lqdrNativeToken: ', (await lqdrProxyFactoryContract.lqdrNativeToken()).toString())
+        console.log('chainId: ', (await lqdrProxyFactoryContract.chainId()).toString())
+
+
+        userToTest = ethers.utils.getAddress("0xd1ad51d0DBcec5e50705C505fd2c2c7908722840");
+       
+        await hre.network.provider.request({
+            method: "hardhat_impersonateAccount",
+            params: [userToTest],
+        });
+        signer = await ethers.getSigner(userToTest)
         
-        geistContract = new ethers.Contract(geist, erc20Abi, owner   )  
+        anyCallPRoxy = new ethers.Contract( proxyAddr, jsonabi2, owner)
+        console.log ( "ad proxy:", (await anyCallPRoxy.admin()).toString() );
+
+        vault = new ethers.Contract( vaultAddress,abi3 , owner)
+        console.log ("ad vault:", (await vault.owner()).toString() );
         
-        gUSDCContract = new ethers.Contract(gUSDC, erc20Abi, owner   )  
+        console.log('-------- Settings ----------')
+        await anyCallPRoxy.connect(signer).setTokenPeers(lqdrProxyFactoryContract.address, [4], [ethers.utils.getAddress("0x38D010Dd73Cc7C1A087eC68d689Ec4e43F0aF6e7")])
+        await vault.connect(signer).addAuth([lqdrProxyFactoryContract.address])
 
 
-    });
+        console.log('-------- Approvals ----------')
+        lqdrOriginalContract = new ethers.Contract(ethers.utils.getAddress("0xb456D55463A84C7A602593D55DB5a808bF46aAc9"), erc20Abi, owner)
+        console.log( (await lqdrOriginalContract.symbol()).toString() );
+        tx = await lqdrOriginalContract.connect(signer).approve(vaultAddress, ethers.utils.parseEther("1000"))
+        await tx.wait()
+        
+        tx = await lqdrOriginalContract.connect(signer).approve(lqdrProxyFactoryContract.address, ethers.utils.parseEther("1000"))
+        await tx.wait()
+
+        console.log( (await lqdrOriginalContract.balanceOf(userToTest)).toString() );
+        tx = await lqdrOriginalContract.connect(signer).approve(proxyAddr, ethers.utils.parseEther("1000"))
+        await tx.wait()
+        
+        console.log('-------- swapping out ----------')
+        token = lqdrProxyFactoryContract.address
+        amount = ethers.utils.parseEther("1")
+        receiver = userToTest
+        toChain = 4
+        await anyCallPRoxy.connect(signer).swapout(token, amount, receiver, toChain, 2, {value: 15, gasLimit: 3000000 })
 
 
-    it("Deploy Contracts", async function () {
-
-        // deploy
-        data = await ethers.getContractFactory("LiGeist");
-        ligeistContract = await data.deploy();
-        txDeployed = await ligeistContract.deployed();
-        expect(await ligeistContract.owner()).to.equal(owner.address)
-
-
-        // upgradeable contract
-        data = await ethers.getContractFactory("LiGEISTChef");
-        ligeistChefContract = await upgrades.deployProxy(data,[gUSDC], {initializer: 'initialize'});
-        txDeployed = await ligeistChefContract.deployed();
-        expect(await ligeistChefContract.owner()).to.equal(owner.address)
+        await hre.network.provider.request({
+            method: "hardhat_stopImpersonatingAccount",
+            params: [userToTest],
+        });
 
     });
 });

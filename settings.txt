@@ -1,0 +1,24 @@
+ftm testnet:
+
+	(originalLQDR: 0xb456D55463A84C7A602593D55DB5a808bF46aAc9)
+
+	- LQDR:		0x9A4EFC0Dd09fc93305b2df737fb1a3f9516aa068
+	- LQDR Vault:	0xbDBF29a038095d7270249D14D5f0BAe4E38f7B8A
+	- AnyBridge:	0x852C882963da259168fA7BEf2f737C988C3Cf5ac
+
+rinkeby:
+
+	- LQDR:		0x38D010Dd73Cc7C1A087eC68d689Ec4e43F0aF6e7
+	- LQDR Vault:	0xC9bA5D992AE66785C4b84Bc17489bA82b0a20FaE
+	- AnyBridge:	0xFDA4DEcd4D74F817a450485bc3E91a067a21EeBF
+
+
+
+settings:
+	- AnyBridge
+	setClientPeers 	( ChainID, AnyBridge_OnChainID)  
+	setTokenPeers	( sourceLQDR, chainIdDest, destLQDR )
+
+	
+	- LQDR Vault
+	addAuth ( LQDR )

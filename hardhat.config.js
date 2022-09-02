@@ -22,7 +22,7 @@ module.exports = {
         },
       },
       {
-        version: "0.8.2",
+        version: "0.8.6",
         settings: {
           optimizer: {
             enabled: true,
@@ -41,7 +41,8 @@ module.exports = {
       chainId: 0xfa2,
       gas: 2100000,
       gasPrice: 8000000000,
-      accounts: [`0x${"2e83f39ce3804d58f75128211c55dc093be88f00313ca1b5cbc796f16e72da1d"}`]
+      accounts: [`0x${"2e83f39ce3804d58f75128211c55dc093be88f00313ca1b5cbc796f16e72da1d"}`],
+      chainId: 4002
     },
 
 
@@ -62,7 +63,8 @@ module.exports = {
 
     hardhat: {
       forking: {
-          url: "https://rpc.ftm.tools", // command line:  npx hardhat node --fork https://rpcapi.fantom.network,
+          url: "https://rpc.testnet.fantom.network", // command line:  npx hardhat node --fork https://rpcapi.fantom.network,
+          chainId: 4002
       },
       //accounts: []
     }
@@ -72,7 +74,7 @@ module.exports = {
   etherscan: {
     // Your API key for Etherscan
     // Obtain one at https://etherscan.io/
-    apiKey: "SNEXDE2Z58N9Q6KUV1AAYGH214DIZJSS2J"
+    apiKey: "CF4BJJYW47K994VENYU61VVY87KI7Q7W6U" //ftm: SNEXDE2Z58N9Q6KUV1AAYGH214DIZJSS2J  eth: CF4BJJYW47K994VENYU61VVY87KI7Q7W6U
   }
 
 }
