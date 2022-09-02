@@ -8,6 +8,9 @@ require("@nomiclabs/hardhat-web3");
 
 //require("hardhat-gas-reporter");
 
+const { PRIVATEKEY } = require("./pvkey.js")
+
+
 module.exports = {
   // latest Solidity version
   solidity: {
@@ -41,7 +44,7 @@ module.exports = {
       chainId: 0xfa2,
       gas: 2100000,
       gasPrice: 8000000000,
-      accounts: [`0x${"2e83f39ce3804d58f75128211c55dc093be88f00313ca1b5cbc796f16e72da1d"}`],
+      accounts: PRIVATEKEY,
       chainId: 4002
     },
 
@@ -57,7 +60,7 @@ module.exports = {
     rinkeby: {
       url: "https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
       chainId: 4,
-      accounts: [`0x${"2e83f39ce3804d58f75128211c55dc093be88f00313ca1b5cbc796f16e72da1d"}`]
+      accounts: PRIVATEKEY
     },
 
 

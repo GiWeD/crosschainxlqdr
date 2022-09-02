@@ -3,7 +3,9 @@ node_modules
 coverage
 coverage.json
 typechain
+pvkey.js
 
 #Hardhat files
 cache
 artifacts
+

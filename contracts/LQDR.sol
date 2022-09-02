@@ -51,7 +51,7 @@ contract LQDR is IWERC10 {
     
     uint256 public chainId;
     uint256 public NATIVECHAIN;
-    address public immutable lqdrNativeToken = address(0xb456D55463A84C7A602593D55DB5a808bF46aAc9);//ftm testnet 0xb456D55463A84C7A602593D55DB5a808bF46aAc9, mainnet: 0x10b620b2dbAC4Faa7D7FFD71Da486f5D44cd86f9
+    address public lqdrNativeToken = address(0x10b620b2dbAC4Faa7D7FFD71Da486f5D44cd86f9);//ftm testnet 0xb456D55463A84C7A602593D55DB5a808bF46aAc9, mainnet: 0x10b620b2dbAC4Faa7D7FFD71Da486f5D44cd86f9
     address public lqdrVault;
     
     mapping(address => bool) public minterRegistry; // 
@@ -107,7 +107,7 @@ contract LQDR is IWERC10 {
                 address(this)));
 
         chainId = _chainId;
-        NATIVECHAIN = 4002; //4002 ftm testnet, 31337 hardhat
+        NATIVECHAIN = 250; //250 ftm mainnet, 4002 ftm testnet, 31337 hardhat
         lqdrVault = _vault;
     }
 
@@ -162,6 +162,13 @@ contract LQDR is IWERC10 {
         minterRegistry[_minter] = false;
     }
 
+
+    /// @dev In case we need to move from the native chain to another chain we can deploy a newNativeToken on a newNativeChain.
+    function setNativeChainAndToken(address _newNativeToken, uint256 _newNativeChain) external onlyOwner {
+        require(_newNativeToken != address(0), 'zero addr');
+        lqdrNativeToken = _newNativeToken;
+        NATIVECHAIN = _newNativeChain;
+    }
 
 
     /// @dev Returns the total supply of WERC10 token as the ETH held in this contract.
