@@ -34,7 +34,7 @@ contract LQDRVault is OwnableUpgradeable {
 
      function initialize() public initializer {
         __Ownable_init();    
-        lqdr = address(0xb456D55463A84C7A602593D55DB5a808bF46aAc9); //ftm testnet 0xb456D55463A84C7A602593D55DB5a808bF46aAc9, mainnet: 0x10b620b2dbAC4Faa7D7FFD71Da486f5D44cd86f9
+        lqdr = address(0x10b620b2dbAC4Faa7D7FFD71Da486f5D44cd86f9); 
     }
 
 

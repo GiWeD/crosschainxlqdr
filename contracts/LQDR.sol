@@ -1,7 +1,3 @@
-/**
- *Submitted for verification at FtmScan.com on 2021-02-19
-*/
-
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 pragma solidity >=0.8.1;
@@ -11,7 +7,6 @@ import "@openzeppelin/contracts/token/ERC20/extensions/draft-IERC20Permit.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "./interfaces/IWERC10.sol";
-
 
 
 interface ITransferReceiver {
@@ -74,9 +69,6 @@ contract LQDR is IWERC10 {
         return _oldOwner;
     }
     
-    
-   
-
     /// @dev Records current ERC2612 nonce for account. This value must be included whenever signature is generated for {permit}.
     /// Every successful call to {permit} increases account's nonce by one. This prevents signature from being used multiple times.
     mapping (address => uint256) public override nonces;

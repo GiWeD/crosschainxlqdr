@@ -58,7 +58,12 @@ contract AnyswapTokenClient is AnycallClientBase {
         }
     }
 
-    /// @dev Call by the user to submit a request for a cross chain interaction
+    // @dev Call by the user to submit a request for a cross chain interaction
+    // @param   token       address of token to bridge 
+    // @param   amount      amount to bridge  
+    // @param   receiver    address who receive the bridged token 
+    // @param   toChainId   target ChainID 
+    // @param   flags       if '0' then paid on target chain, if '2' paid on source chain. 
     function swapout(address token,uint256 amount,address receiver,uint256 toChainId,uint256 flags) external payable whenNotPaused(PAUSE_SWAPOUT_ROLE) {
         address clientPeer = clientPeers[toChainId];
         require(clientPeer != address(0), "AnycallClient: no dest client");

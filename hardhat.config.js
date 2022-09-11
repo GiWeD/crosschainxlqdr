@@ -8,7 +8,7 @@ require("@nomiclabs/hardhat-web3");
 
 //require("hardhat-gas-reporter");
 
-const { PRIVATEKEY } = require("./pvkey.js") // PRIVATEKEY = [`0x${"YOUR_PVKEY"}`] ... module.exports = {PRIVATEKEY}
+const { PRIVATEKEY, APIKEY } = require("./pvkey.js") // PRIVATEKEY = [`0x${"YOUR_PVKEY"}`] ... module.exports = {PRIVATEKEY}
 
 
 module.exports = {
@@ -53,8 +53,8 @@ module.exports = {
     fantomOpera: {
       url: `https://rpc.ftm.tools/`,
       chainId: 250,
-      //accounts: [`0x${""}`], //
-      gas: 1000000
+      accounts: PRIVATEKEY
+      //gas: 1000000
     },
 
     rinkeby: {
@@ -77,7 +77,7 @@ module.exports = {
   etherscan: {
     // Your API key for Etherscan
     // Obtain one at https://etherscan.io/
-    apiKey: "CF4BJJYW47K994VENYU61VVY87KI7Q7W6U" //ftm: SNEXDE2Z58N9Q6KUV1AAYGH214DIZJSS2J  eth: CF4BJJYW47K994VENYU61VVY87KI7Q7W6U
+    apiKey: APIKEY //ftm: SNEXDE2Z58N9Q6KUV1AAYGH214DIZJSS2J  eth: CF4BJJYW47K994VENYU61VVY87KI7Q7W6U
   }
 
 }
