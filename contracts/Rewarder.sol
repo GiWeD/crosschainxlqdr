@@ -11,7 +11,6 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./libraries/Math.sol";
 
 interface IMirroredVotingEscrow {
-
     function balanceOf(address) external view returns(uint);
     function totalSupply() external view returns(uint);
 }
@@ -21,27 +20,27 @@ contract Rewarder is ReentrancyGuard, Ownable {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
 
-    uint256 public DURATION = 7 * 86400;
+    uint256 public DURATION = 7 * 86400;    // period of distribution
 
-    address[] public rewardTokens;
-    address public VE;
+    address public VE;                      // mirrored voting escrow
+    address[] public rewardTokens;          // array of reward tokens
 
     // reward token mappings
-    mapping(address => bool) public isRewardToken;
-    mapping(address => uint) public tokenRewardRate;
-    mapping(address => uint) public tokenPeriodFinish;
-    mapping(address => uint) public tokenLastUpdateTime;
-    mapping(address => uint) public tokenRewardPerTokenStored;
+    mapping(address => bool) public isRewardToken;              // check if a token is a reward
+    mapping(address => uint) public tokenRewardRate;            // token / sec
+    mapping(address => uint) public tokenPeriodFinish;          // when distro period finish
+    mapping(address => uint) public tokenLastUpdateTime;        // last time checkpoint was called
+    mapping(address => uint) public tokenRewardPerTokenStored;  // store last time rewardPerToken   (token == ve.balanceOf(user))
 
 
     // user mappings
     // user -> token -> amount
-    mapping(address => mapping(address=> uint256)) public userRewardPerTokenPaid;
-    mapping(address => mapping(address => uint256)) public userRewards;
+    mapping(address => mapping(address=> uint256)) public userRewardPerTokenPaid;   // track user claims
+    mapping(address => mapping(address => uint256)) public userRewards;             // rewards to distribute, set to 0 after claim
 
 
 
-    event Harvest(address indexed user, uint256 reward);
+    event Harvest(address indexed user, uint256 reward);    // event on claim
 
     constructor(address _ve) {
         VE = _ve;   // mirror voting escrow
@@ -56,6 +55,7 @@ contract Rewarder is ReentrancyGuard, Ownable {
     --------------------------------------------------------------------------------
     ----------------------------------------------------------------------------- */
 
+    ///@notice add reward token
     function addRewardTokens(address[] memory tokens) external onlyOwner {
         uint i;
         for (i = 0; i < tokens.length; i++) {
@@ -66,6 +66,7 @@ contract Rewarder is ReentrancyGuard, Ownable {
         }
     }
 
+    ///@notice remove reward token
     function removeRewardTokens(address[] memory tokens) external onlyOwner {
         uint i = 0;
         for(i; i < _rewardTokensLength(); i++){
@@ -76,6 +77,7 @@ contract Rewarder is ReentrancyGuard, Ownable {
             }
         }
     }
+
 
     /// @notice set a new duration for the distribution. Min 1 DAY. 
     /// @dev    after update duration, checkpoint tokens data
@@ -89,15 +91,23 @@ contract Rewarder is ReentrancyGuard, Ownable {
     function forceCheckPointAll() external onlyOwner {
         _forceCheckPointAll();
     }
-
+    
+    ///@notice recover any erc20, all balance
     function recoverAllERC20(address tokenAddress) external onlyOwner {
         uint balance = IERC20(tokenAddress).balanceOf(address(this));
         IERC20(tokenAddress).safeTransfer(owner(), balance);
     }
 
+    ///@notice recover any erc20 given amount
     function recoverAmountERC20(address tokenAddress, uint256 tokenAmount) external onlyOwner {
         require(tokenAmount <= IERC20(tokenAddress).balanceOf(address(this)));
         IERC20(tokenAddress).safeTransfer(owner(), tokenAmount);
+    }
+
+    ///@notice set new mirrored voting escrow
+    function setVE(address _ve) external onlyOwner {
+        require(_ve != address(0));
+        VE = _ve;
     }
 
     /* -----------------------------------------------------------------------------
@@ -123,7 +133,7 @@ contract Rewarder is ReentrancyGuard, Ownable {
         return Math.min(block.timestamp, _periodFinish(token));
     }
 
-    ///@notice  reward for a single token
+    ///@notice  reward per token for a single token
     function rewardPerToken(address token) public view returns (uint256) {
         uint _totalSupply = totalSupply();
 
@@ -156,19 +166,31 @@ contract Rewarder is ReentrancyGuard, Ownable {
         return _rewards;
     }
 
+    ///@notice see earned reward for user given a token
+    ///@return _reward amount to claim.
+    function earned(address account, address _token) internal view returns (uint256 reward) {
+        uint _balance = IMirroredVotingEscrow(VE).balanceOf(account);
+        uint i = 0;
+        _reward = _balance.mul(rewardPerToken(_token).sub(userRewardPerTokenPaid[account][_token])).div(1e18).add(userRewards[account][_token]);  
+        return _reward;
+    }
+
     ///@notice get total reward for the duration
     function rewardForDuration(address token) public view returns (uint256) {
         return tokenRewardRate[token].mul(DURATION);
     }
 
+    ///@notice get the _period when reward terminate
     function _periodFinish(address _token) public view returns (uint256) {
         return tokenPeriodFinish[_token];
     }
 
+    ///@notice get all reward tokens
     function _rewardTokens() public view returns(address[] memory) {
         return rewardTokens;
     }
 
+    ///@notice get reward token length
     function _rewardTokensLength() public view returns(uint) {
         return rewardTokens.length;
     }
@@ -203,9 +225,25 @@ contract Rewarder is ReentrancyGuard, Ownable {
             }
         }
     }
+
+    ///@notice User claim single token function
+    function claim(address _token) public nonReentrant  {
+        address _user = msg.sender;
+        _updateReward(_token);
+        
+        _reward = earned(_user, _token);
+
+        userRewardPerTokenPaid[_user][_token] = tokenRewardPerTokenStored[_token];
+        if (reward > 0) {
+            userRewards[_user][_token] = 0;
+            IERC20(_token).safeTransfer(_user, reward);
+            emit Harvest(_user, reward);
+        }
+        
+    }
     
 
-    ///@notice update reward info 
+    ///@notice update reward info for all tokens
     function _updateReward() internal {
         uint i = 0;
         for(i; i < _rewardTokensLength(); i++){
@@ -214,16 +252,23 @@ contract Rewarder is ReentrancyGuard, Ownable {
         }
     }
 
+    ///@notice update reward info for single token 
+    function _updateReward(address _token) internal {
+        tokenRewardPerTokenStored[_token] = rewardPerToken(_token);
+        tokenLastUpdateTime[_token] = lastTimeRewardApplicable(_token);
+    }
+
     /* -----------------------------------------------------------------------------
     --------------------------------------------------------------------------------
     --------------------------------------------------------------------------------
-                                    DISTRIBUTION
+                                    CHECKPOINT
     --------------------------------------------------------------------------------
     --------------------------------------------------------------------------------
     ----------------------------------------------------------------------------- */
 
-
-    /// @dev Receive rewards from distribution
+    /// @notice checkpoint tokens find the rewardRate for the DURATION
+    /// @param  _tokens     to checkpoint
+    /// @dev if periodFinish is not reached then update only leftovers (should be the same rewardrate)
     function checkpoint(address[] memory _tokens) external nonReentrant {
         uint i = 0;
 
@@ -252,6 +297,8 @@ contract Rewarder is ReentrancyGuard, Ownable {
         }
     }
 
+    /// @notice checkpoint ALL tokens find the rewardRate for the DURATION
+    /// @dev if periodFinish is not reached then update only leftovers (should be the same rewardrate)    
     function checkpointAll() public nonReentrant {
         uint i = 0;
         for(i; i < rewardTokens.length; i++) {
@@ -275,6 +322,7 @@ contract Rewarder is ReentrancyGuard, Ownable {
         }
     }
 
+    /// @notice force a checkpoint even if tokenPeriodFinish is not reached. Called in case huge reward added or new distribution period is set.
     function _forceCheckPointAll() internal nonReentrant {
         uint i = 0;
         for(i; i < rewardTokens.length; i++) {
