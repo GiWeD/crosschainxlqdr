@@ -167,12 +167,11 @@ contract Rewarder is ReentrancyGuard, Ownable {
     }
 
     ///@notice see earned reward for user given a token
-    ///@return _reward amount to claim.
+    ///@return reward amount to claim.
     function earned(address account, address _token) internal view returns (uint256 reward) {
         uint _balance = IMirroredVotingEscrow(VE).balanceOf(account);
-        uint i = 0;
-        _reward = _balance.mul(rewardPerToken(_token).sub(userRewardPerTokenPaid[account][_token])).div(1e18).add(userRewards[account][_token]);  
-        return _reward;
+        reward = _balance.mul(rewardPerToken(_token).sub(userRewardPerTokenPaid[account][_token])).div(1e18).add(userRewards[account][_token]);  
+        return reward;
     }
 
     ///@notice get total reward for the duration
@@ -231,7 +230,7 @@ contract Rewarder is ReentrancyGuard, Ownable {
         address _user = msg.sender;
         _updateReward(_token);
         
-        _reward = earned(_user, _token);
+        uint reward = earned(_user, _token);
 
         userRewardPerTokenPaid[_user][_token] = tokenRewardPerTokenStored[_token];
         if (reward > 0) {
